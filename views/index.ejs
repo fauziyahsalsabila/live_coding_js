@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoMarine Solution</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #e0f7fa;
+        margin: 0;
+        padding: 0;
+      }
+      h1, h2 {
+        text-align: center;
+        color: #006064;
+        font-weight: 600;
+      }
+      table {
+        width: 85%;
+        margin: 30px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      table, th, td {
+        border: 1px solid #b2ebf2;
+      }
+      th, td {
+        padding: 12px;
+        text-align: center;
+      }
+      th {
+        background-color: #00838f;
+        color: #fff;
+      }
+      tr:nth-child(even) {
+        background-color: #b2dfdb;
+      }
+      a {
+        color: #00796b;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      form {
+        width: 55%;
+        margin: 30px auto;
+        padding: 25px;
+        background-color: #ffffff;
+        border: 2px solid #009688;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #004d40;
+      }
+      input[type="text"], input[type="email"], input[type="date"], input[type="time"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #80cbc4;
+        border-radius: 4px;
+        background-color: #e0f2f1;
+        font-size: 14px;
+      }
+      button {
+        padding: 12px 20px;
+        background-color: #00796b;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      button:hover {
+        background-color: #004d40;
+      }
+    </style>
+
+    <h1>Pengelolaan Konservasi EcoMarine Solution</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Ekosistem</th>
+        <th>Kondisi Air</th>
+        <th>Tanggal</th>
+        <th>Wilayah</th>
+        <th>Aksi</th>
+      </tr>
+      <% biota.forEach(eko => { %>
+      <tr>
+        <td><%= eko.id %></td>
+        <td><%= eko.ekosistem %></td>
+        <td><%= eko.air %></td>
+        <td><%= eko.tanggal %></td>
+        <td><%= eko.wilayah %></td>
+        <td>
+          <a href="/edit/<%= eko.id %>">Edit</a> |
+          <a href="/delete/<%= eko.id %>">Hapus</a>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+
+    <h2>Tambah Data Baru</h2>
+    <form action="/add" method="post">
+      <label for="ekosistem">Ekosistem:</label>
+      <input type="text" id="ekosistem" name="ekosistem" required /><br />
+      <label for="air">Kondisi Air:</label>
+      <input type="text" id="air" name="air" required /><br />
+      <label for="tanggal">Tanggal:</label>
+      <input type="date" id="tanggal" name="tanggal" required /><br />
+      <label for="wilayah">Wilayah:</label>
+      <input type="text" id="wilayah" name="wilayah" required /><br />
+
+      <button type="submit">Tambahkan</button>
+    </form>
+
+    <form action="/auth/dash" method="GET">
+      <button type="submit">Dashboard</button>
+    </form>
+  </body>
+</html>
